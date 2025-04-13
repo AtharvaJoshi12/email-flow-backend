@@ -12,11 +12,11 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'your_jwt_secret_key'; 
 // PostgreSQL setup
 const pgClient = new Client({
-  host: 'localhost',
+  host: 'dpg-cvtolnngi27c73a8eurg-a',
   port: 5432,
-  user: 'postgres',
-  password: 'atharva',
-  database: 'emailScheduler',
+  user: 'emai_flow_db_user',
+  password: 'IRuQwgZBVoi6ut9nD9KOV5EcpB8i9mIN',
+  database: 'emai_flow_db',
 });
 
 pgClient.connect()
