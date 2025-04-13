@@ -64,6 +64,10 @@ cron.schedule('* * * * *', async () => {
   console.log('⏰ Running cron job to check for due emails...');
   const now = new Date();
 
+  // print last 5 emails
+  const res = await pgClient.query('SELECT * FROM emails ORDER BY scheduled_time DESC LIMIT 5');
+  console.log('Last 5 emails:', res.rows);
+
   try {
     const res = await pgClient.query(
       'SELECT * FROM emails WHERE scheduled_time <= $1 AND is_sent = false',
@@ -72,7 +76,7 @@ cron.schedule('* * * * *', async () => {
 
     for (const email of res.rows) {
       const mailOptions = {
-        from: 'your_email@gmail.com',
+        from: 'atharvajoshi202@gmail.com',
         to: email.to_email,
         subject: email.subject,
         text: email.body,
