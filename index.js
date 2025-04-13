@@ -112,7 +112,7 @@ app.post('/schedule-email', async (req, res) => {
   try {
     const result = await pgClient.query(
       'INSERT INTO emails (to_email, subject, body, scheduled_time) VALUES ($1, $2, $3, $4) RETURNING *',
-      [to, subject, body, new Date(time)]
+      [to, subject, body, new Date(time).toISOString()]
     );
 
     res.json({ message: '✅ Email scheduled successfully!', data: result.rows[0] });
